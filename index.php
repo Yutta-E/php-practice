@@ -26,7 +26,7 @@ if (!empty($_POST)) {
 }
 // 投稿を取得する
 //$posts = $db->query('SELECT m.name, m.picture, p.* FROM members m, posts p WHERE m.id=p.member_id ORDER BY p.created DESC');
-$page = $_REQUEST['page'];
+@$page = $_REQUEST['page'];
 if ($page == ''){
 	$page = 1;
 }
@@ -78,7 +78,7 @@ if (isset($_REQUEST['res'])) {
 		<dl>
 			<dt><?php echo htmlspecialchars($member['name']); ?>さん、メッセージをどうぞ</dt>
 		<dd>
-		<textarea name="message" cols="50" rows="5"><?php echo h($message); ?></textarea>
+		<textarea name="message" cols="50" rows="5"><?php echo h(@$message); ?></textarea>
 		<input type="hidden" name="reply_post_id" value="<?php echo h($_REQUEST['res']); ?>" />
 		</dd>
 		</dl>
