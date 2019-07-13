@@ -2,18 +2,23 @@
 require('../dbconnect.php');
 
 session_start();
+
+
+$error = array();//型の違い(int,stringなど..)をなくす
+
+
 if (!empty($_POST)) {
 	// エラー項目の確認
-	if ($_POST['name'] == '') {
+	if (!array_key_exists('name', $_POST) || $_POST['name'] === '') {
 		$error['name'] = 'blank';
 	}
-	if ($_POST['email'] == '') {
+	if (!array_key_exists('email', $_POST) || $_POST['email'] === '') {
 		$error['email'] = 'blank';
 	}
 	if (strlen($_POST['password']) < 4) {
 		$error['password'] = 'length';
 	}
-	if ($_POST['password'] == '') {
+	if (!array_key_exists('password', $_POST) || $_POST['password'] === '') {
 		$error['password'] = 'blank';
 	}
 	$fileName = $_FILES['image']['name'];
